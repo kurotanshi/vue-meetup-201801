@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Vue</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js"></script>
+  <style type="text/css">
+    button, ul {
+      font-size: 2em;
+      margin-bottom: 1em;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app">
+
+  <ul>
+    <li v-for="(value, key) in userProfile">
+      {{ key }}: {{ value }}
+    </li>
+  </ul>
+
+  <button @click="update">update</button>
+
+</div>
+
+
+<script>
+
+  var app = new Vue({
+    el: '#app',
+    data: {
+      userProfile: {
+        name: 'Kuro'
+      }
+    },
+    methods:{
+      update: function(){
+
+        // 無法直接對物件新增屬性
+        // this.userProfile.age = 32;
+
+        // 需要透過 this.$set(object, key, value) 或 Vue.set 指定屬性
+        this.$set(this.userProfile, 'age', 32);
+        // Vue.set(this.userProfile, 'age', 32);
+      }
+    }
+  });
+
+</script>
+</body>
+</html>

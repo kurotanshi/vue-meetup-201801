@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Vue</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
+  <style>
+    #app {
+      margin: 1em;
+      font-size: 1.2em;
+    }
+
+    button{
+      font-size: 1.2em;
+    }
+
+    .component {
+      margin-bottom: 1em;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="app">
+    <my-component></my-component>
+    <my-component></my-component>
+    <my-component></my-component>
+  </div>
+
+  <script>
+    var data = {
+      count: 0
+    };
+
+    // register
+    Vue.component('my-component', {
+      template: '<div class="component"> <span> {{ plus }}</span> - <button @click="count++">add</button></div>',
+      data: function() {
+        // return data;
+        return {
+          count: 0
+        }
+      },
+      computed:{
+        plus()  {
+          return this.count + 1;
+        }
+      }
+    });
+
+    // create a root instance
+    new Vue({
+      el: '#app'
+    });
+  </script>
+</body>
+</html>

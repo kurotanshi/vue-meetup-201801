@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Vue</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
+</head>
+<body>
+
+<div id="app">
+  <ul>
+    <li v-for="u in activesUsers" :key="u._id">{{ u.name }} - {{ u.isActive }}</li>
+  </ul>
+</div>
+
+<script>
+
+  var app = new Vue({
+    el: '#app',
+    data: {
+      users: [
+        {
+          "_id": "5a5eca25d2db93d3c3014a3b",
+          "isActive": false,
+          "name": "Sally Quinn"
+        },
+        {
+          "_id": "5a5eca25c03354696b0aaf1f",
+          "isActive": true,
+          "name": "Shari Bowers"
+        },
+        {
+          "_id": "5a5eca250b71e07abc9068a2",
+          "isActive": false,
+          "name": "Hawkins Fernandez"
+        },
+        {
+          "_id": "5a5eca259866a439864ef6bd",
+          "isActive": true,
+          "name": "Sheri Ortega"
+        },
+        {
+          "_id": "5a5eca25672552ddf41433ac",
+          "isActive": true,
+          "name": "Irma Joseph"
+        },
+        {
+          "_id": "5a5eca255016b38ef4afdc0d",
+          "isActive": true,
+          "name": "John Leonard"
+        },
+        {
+          "_id": "5a5eca255eae78cb80eff938",
+          "isActive": false,
+          "name": "Fry Holder"
+        },
+        {
+          "_id": "5a5eca2596bcbfdfc5c52e12",
+          "isActive": true,
+          "name": "Stanton Martin"
+        },
+        {
+          "_id": "5a5eca255ec121a3c20a4e1c",
+          "isActive": false,
+          "name": "Corina Vinson"
+        },
+        {
+          "_id": "5a5eca25e26e166d2b0f5831",
+          "isActive": false,
+          "name": "Potts Holman"
+        }
+      ]
+    },
+    computed: {
+      activesUsers(){
+        return this.users.filter( u => u.isActive );
+      }
+    }
+  });
+
+</script>
+</body>
+</html>

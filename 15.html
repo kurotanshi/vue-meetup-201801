@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Vue</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js"></script>
+  <style type="text/css">
+    button, ul {
+      font-size: 2em;
+      margin-bottom: 1em;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app">
+
+  <ul>
+    <li v-for="i in arr">{{ i }}</li>
+  </ul>
+
+  <button @click="update">update</button>
+
+</div>
+
+
+<script>
+
+  var app = new Vue({
+    el: '#app',
+    data: {
+      arr: [1, 2, 3, 4, 5],
+    },
+    methods:{
+      update: function(){
+
+        // this.arr.push( 0 );
+        // 直接修改某個索引
+        // this.arr[2] = 123;
+        // 直接修改陣列長度
+        // this.arr.length = 2;
+        //
+        // 以上 Vue 都無法偵測更新
+
+        // Q1: this.arr.splice(2, 1, 123);
+        // Q2: this.arr.splice(2);
+
+      }
+    }
+  });
+
+</script>
+</body>
+</html>

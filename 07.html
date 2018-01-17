@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Vue</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
+
+  <style>
+    button{
+      font-size: 2em;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app"></div>
+
+
+<script>
+
+  var myMixin = {
+    created: function () {
+      this.hello()
+    },
+    methods: {
+      hello: function () {
+        console.log('hello from mixin!')
+      }
+    }
+  };
+
+  var app = new Vue({
+    el: '#app',
+    mixins: [myMixin],
+    created: function () {
+      this.hello()
+    },
+    methods: {
+      hello: function () {
+        console.log('hello from app!')
+      }
+    }
+  });
+
+</script>
+</body>
+</html>

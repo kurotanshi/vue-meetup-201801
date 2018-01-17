@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome to Vue</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js"></script>
+
+  <style>
+    input,
+    .add {
+      font-size: 1.5em;
+    }
+
+    .input-group {
+      display: block;
+      height: 50px;
+      background-color: #ccc;
+      padding: 1em;
+      margin-bottom: 1em;
+    }
+
+    .wrap {
+      overflow: hidden;
+      display: block;
+    }
+
+    .done-lists,
+    .todo-lists {
+      float: left;
+      padding: 1em .5em;
+      padding-top: 0;
+      height: 250px;
+      width: 200px;
+      border: 1px solid #000;
+      margin-right: 1em;
+    }
+
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .del {
+      margin-left: 1em;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <div class="input-group">
+      <input type="text" v-model="newTitle"> <button @click="add" class="add">Add</button>
+    </div>
+
+    <div class="wrap">
+      <div class="todo-lists">
+        <h1>Todo</h1>
+        <ul>
+          <list-item v-for="i in todoLists" :key="i.id" :id="i.id" :title="i.title" :status="i.isDone"></list-item>
+        </ul>
+      </div>
+
+      <div class="done-lists">
+        <h1>Done</h1>
+        <ul>
+          <list-item v-for="i in doneLists" :key="i.id" :id="i.id" :title="i.title" :status="i.isDone"></list-item>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+
+  <script>
+    Vue.component('list-item', {
+      template: `
+      <li>
+        <label><input @change="update" v-model="isDone" type="checkbox">{{ title }}</label>
+      </li>
+      `,
+      props: ["id", "title", "status"],
+      data: function() {
+        return {
+          isDone: this.status
+        };
+      },
+      methods: {
+        update() {
+          // 將事件往上送
+          this.$parent.$emit('update', {
+            id: this.id,
+            status: this.isDone
+          });
+        }
+      }
+
+
+    });
+
+    new Vue({
+      el: "#app",
+      mounted() {
+        this.$on('update', this.updateStatus)
+      },
+      data: {
+        newTitle: '',
+        lists: [{
+          id: '___1',
+          title: 'Test 1',
+          isDone: false
+        }, {
+          id: '___2',
+          title: 'Test 2',
+          isDone: false
+        }, {
+          id: '___3',
+          title: 'Test 3',
+          isDone: false
+        }, {
+          id: '___4',
+          title: 'Test 4',
+          isDone: false
+        }, ]
+      },
+      computed: {
+        todoLists() {
+          return this.lists.filter((d) => !d.isDone);
+        },
+        doneLists() {
+          return this.lists.filter((d) => d.isDone);
+        }
+      },
+      methods: {
+        updateStatus(obj) {
+          var o = this.lists.find((d) => d.id === obj.id);
+          o.isDone = obj.status;
+        },
+        add() {
+          if (this.newTitle !== '') {
+            this.lists.push({
+              id: new Date().getTime(),
+              title: this.newTitle,
+              isDone: false
+            });
+            this.newTitle = '';
+          }
+        }
+      }
+    })
+  </script>
+
+</body>
+</html>

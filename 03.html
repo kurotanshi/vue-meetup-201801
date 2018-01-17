@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Vue</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js"></script>
+  <style>
+    #app {
+      margin: 1em;
+      font-size: 1.2em;
+    }
+
+    .component div {
+      margin-bottom: 1em;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <my-component message="hello"></my-component>
+
+  </div>
+
+  <script>
+    // register
+    Vue.component('my-component', {
+      template: '<div class="component">{{ propF }}</div>',
+      props: {
+        message: null,          // null 代表不檢查型別
+        propA: Number,            // 限定數字
+        propB: [String, Number],  // 多種條件可用 [ ] 隔開
+        propC: {
+          type: String,           // 必要欄位，且限定字串型別
+          //required: true
+        },
+        propD: {
+          type: Number,           // 數字型別，且有預設值
+          default: 100
+        },
+        propE: {
+          type: Object,           // Object 型別，代表可接受的是個物件或陣列的型別
+          default: function() {
+            return {
+              message: 'hello'
+            }
+          }
+        },
+        propF: {
+          validator: function(value) {    // 自訂的條件驗證
+            return value > 10;
+          }
+        }
+      },
+    });
+
+    // a root instance
+    new Vue({
+      el: '#app',
+      data: {
+        num: "123"
+      }
+    });
+  </script>
+
+</body>
+</html>

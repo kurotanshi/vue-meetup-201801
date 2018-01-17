@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Vue</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
+</head>
+<body>
+
+  <div id="app">
+
+    <h1>{{ fullName }}</h1>
+
+    <hr>
+
+    <h1>
+    {{
+      fullName.split(' ').map(function (word) {
+        return word[0].toUpperCase() + word.slice(1)
+      }).join(' ')
+    }}
+    </h1>
+
+    <hr>
+
+    <h1>{{ normalizedFullName }}</h1>
+
+  </div>
+
+
+<script>
+
+  var app = new Vue({
+    el: '#app',
+    data: {
+      fullName: 'kuro hsu'
+    },
+    computed: {
+      normalizedFullName: function () {
+        return this.fullName.split(' ').map(function (word) {
+          return word[0].toUpperCase() + word.slice(1)
+        }).join(' ')
+      }
+    }
+  });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Vue</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
+</head>
+<body>
+
+  <div id="app">
+
+    <todo-item></todo-item>
+    <todoItem></todoItem>
+    <TodoItem></TodoItem>
+
+  </div>
+
+
+<script>
+
+  Vue.component('TodoItem', {
+    template: '<h1>Hello!</h1>'
+  });
+
+  var app = new Vue({
+    el: '#app',
+    // template:`
+    //   <div id="app">
+    //     <todo-item></todo-item>
+    //     <todoItem></todoItem>
+    //     <TodoItem></TodoItem>
+    //   </div>
+    // `
+
+  });
+</script>
+</body>
+</html>

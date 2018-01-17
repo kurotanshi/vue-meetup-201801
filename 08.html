@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Vue</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
+</head>
+<body>
+
+<div id="app"></div>
+
+
+<script>
+
+  Vue.component('my-component', {
+    template: '<h1>Hello!</h1>'
+  });
+
+  var app = new Vue({
+    el: '#app',
+    template: `
+      <div id="app">
+        <my-component />
+        <h1>Hi 1234</h1>
+      </div>
+    `
+  });
+</script>
+</body>
+</html>

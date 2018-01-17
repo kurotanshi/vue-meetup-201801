@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Vue</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
+</head>
+<body>
+
+  <div id="app">
+
+    <todo-item greeting-text="hello"></todo-item>
+
+    <todo-item greetingText="hi!"></todo-item>
+
+  </div>
+
+
+<script>
+
+  Vue.component('TodoItem', {
+    props: {
+      "greeting-text": String
+    },
+    template: '<h1>{{ greetingText }}</h1>'
+  });
+
+  var app = new Vue({
+    el: '#app',
+  });
+
+</script>
+</body>
+</html>
